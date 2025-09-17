@@ -1,0 +1,158 @@
+## MERN CRUD + MySQL Auth
+
+A simple MERN application demonstrating:
+
+- Product CRUD with MongoDB (via Express API)
+- User Registration/Login with MySQL (bcrypt password hashing + JWT)
+- React client with Redux Toolkit state management
+
+### Tech Stack
+
+- Backend: Node.js, Express, Mongoose, mysql2, bcryptjs, jsonwebtoken
+- Frontend: React (Vite), Redux Toolkit, React Router, Axios
+- Styling: Tailwind CSS (optional custom CSS included)
+
+---
+
+## Project Structure
+
+```
+mernnn/
+  server/
+    src/
+      index.js
+      lib/
+        mongo.js
+        mysql.js
+      models/
+        Product.js
+      routes/
+        products.js
+        auth.js
+      middleware/
+        auth.js
+    package.json
+    .env
+  client/
+    src/
+      main.jsx
+      App.jsx
+      api.js
+      store.js
+      slices/
+        authSlice.js
+        productsSlice.js
+      pages/
+        Login.jsx
+        Register.jsx
+        Products.jsx
+      index.css
+    index.html
+    postcss.config.js
+    tailwind.config.js
+    package.json
+```
+
+---
+
+## Prerequisites
+
+- Node.js 18+
+- MongoDB running locally or in the cloud
+- MySQL running locally or in the cloud
+
+---
+
+## Environment Variables
+
+Create a `server/.env` file:
+
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/mern_products
+JWT_SECRET=changeme
+
+# Use ONE of the following MySQL configurations
+
+# Option 1: Single connection URL (recommended)
+# Encode special characters in the password (e.g., ! => %21)
+MYSQL_URL=mysql://root:StrongPassword123%21@localhost:3306/mern_app
+
+# Option 2: Separate fields
+# MYSQL_HOST=localhost
+# MYSQL_PORT=3306
+# MYSQL_USER=root
+# MYSQL_PASSWORD=StrongPassword123!
+# MYSQL_DATABASE=mern_app
+```
+
+Create a `client/.env` file:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+---
+
+## Install & Run (Development)
+
+From the project root (`mernnn`):
+
+```powershell
+# Backend
+cd server
+npm install
+npm run dev
+
+# In another terminal - Frontend
+cd ../client
+npm install
+npm run dev
+```
+
+- API: http://localhost:5000
+- Client: Vite will print something like http://localhost:5173 (or 5174 if 5173 is busy)
+
+---
+
+## API Endpoints
+
+Base URL: `http://localhost:5000/api`
+
+Auth (MySQL):
+
+- POST `/auth/register` → `{ username, password }`
+- POST `/auth/login` → `{ username, password }` → returns `{ token }`
+
+Products (MongoDB) — requires `Authorization: Bearer <token>` header:
+
+- GET `/products` → list products
+- GET `/products/:id` → single product
+- POST `/products` → create `{ name, price, description }`
+- PUT `/products/:id` → update `{ name, price, description }`
+- DELETE `/products/:id` → delete
+
+---
+
+## Frontend Usage
+
+1. Open the client in the browser.
+2. Register a new user, then login.
+3. After login, manage products: create, edit, delete.
+
+State Management:
+
+- Redux Toolkit slices: `authSlice` handles JWT/token, `productsSlice` handles Product data fetch/mutations
+
+Environment:
+
+- Client reads API base from `VITE_API_URL`
+
+---
+
+## Build (Production)
+
+```powershell
+# Backend uses Node directly
+cd server
+npm run start
