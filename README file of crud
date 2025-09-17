@@ -93,7 +93,21 @@ VITE_API_URL=http://localhost:5000/api
 ```
 
 ---
+To open the "CRUD" folder on GitHub, you need to understand that it's not a regular folder but a Git submodule. A submodule is a separate repository that is linked inside a main repository.
 
+Because of this, you cannot simply click and open it in the GitHub web interface like a regular folder.
+
+How to Access the Files
+To access the files within the "CRUD" folder, you must clone the repository and its submodules to your local computer using the command line.
+
+Clone the Repository: Open your terminal or command prompt and run the following command. The - -recurse-submodules flag is the key. It tells Git to not only clone the main repository but also to automatically download and initialize all its submodules.
+
+Bash
+
+git clone --recurse-submodules [repository_url]
+(Replace [repository_url] with the URL of the repository you want to clone).
+
+Open the Folder: Once the cloning process is complete, you will have a local copy of the repository. You can now navigate into the newly created folder, and the "CRUD" folder will contain all of its files and content.
 ## Install & Run (Development)
 
 From the project root (`mernnn`):
