@@ -1,0 +1,47 @@
+## API Development Workspace
+
+This workspace contains one or more API services. Each service has its own README with setup and run instructions.
+
+### Contents
+
+- `orders-api/` – REST API for managing orders (see its `README.md`)
+
+### Quick Start
+
+```powershell
+# Pick a service and install deps
+cd orders-api
+npm install
+
+# Start in development
+npm run dev
+
+# or start in production
+npm start
+```
+
+### Common Environment Variables
+
+Create a `.env` in the service directory:
+
+```env
+PORT=4000
+
+# Database
+# MongoDB only
+# MONGO_URI=mongodb://127.0.0.1:27017/orders
+
+# Auth (if JWT is used)
+# JWT_SECRET=changeme
+```
+
+### Scripts (typical)
+
+- `npm run dev` – start with live-reload (nodemon)
+- `npm start` – start the server with Node
+- `npm test` – run tests (if configured)
+
+### Conventions
+
+- Each API keeps code under `src/` with folders like `routes`, `controllers`, `models`, `services`, `middleware`, and `lib`.
+- Update the service-level README with exact endpoints and data models.
