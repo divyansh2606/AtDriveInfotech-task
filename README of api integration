@@ -1,0 +1,93 @@
+## API Integration: Weather App
+
+A simple client-side Weather application demonstrating API integration using vanilla HTML/CSS/JS.
+
+### Folder
+
+- `assets-weaather-app/` – static assets (icons/images)
+
+### Files
+
+- `index.html` – main page markup
+- `style.css` – UI styles
+- `index.js` – API calls and UI logic
+
+---
+
+## Features
+
+- Search weather by city name
+- Displays current conditions (e.g., temperature, description, humidity, wind)
+- Error states for unknown cities or network errors
+- Responsive layout with clean styling
+
+---
+
+## Prerequisites
+
+- Any modern browser
+- Optional: Local HTTP server (recommended for CORS/cache behavior and icon loading). Examples:
+  - VSCode Live Server extension
+  - `npx serve` or `npx http-server`
+
+---
+
+## Setup
+
+1. If the app requires an API key (e.g., OpenWeatherMap):
+
+   - Obtain an API key from the provider.
+   - Open `index.js` and set the API key value where indicated (look for a constant like `API_KEY` or a placeholder string).
+
+2. If the API provides units/localization options:
+   - Adjust units (metric/imperial) and language in `index.js` configuration constants if present.
+
+---
+
+## Run Locally
+
+Option A: Open directly
+
+- Double click `index.html` to open in your browser.
+
+Option B: Run a lightweight local server (recommended)
+
+```bash
+# from this directory
+npx serve .
+# or
+npx http-server -p 5175 .
+```
+
+- Navigate to the printed URL (e.g., `http://localhost:3000` or `http://localhost:5175`).
+
+---
+
+## How It Works
+
+- `index.js` listens for a search/submit event, reads the city value, and calls a weather API endpoint (e.g., `https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric`).
+- The response is parsed and rendered into the DOM (temperature, description, icon, etc.).
+- Basic error handling will show a friendly message if the request fails or the city is not found.
+
+---
+
+## Customization
+
+- Styles: Edit `style.css` for colors, spacing, and layout.
+- Units/Locale: Update the constants in `index.js` (e.g., `units=metric|imperial`, `lang=en`).
+- Icons: Replace or add assets inside `assets-weaather-app/`.
+
+---
+
+## Troubleshooting
+
+- API key errors: Ensure the key is valid and correctly inserted in `index.js`.
+- CORS issues: Serve via a local HTTP server instead of opening `file://` directly.
+- Rate limits: Free tiers can throttle requests; wait or switch to a higher tier.
+- City not found: Verify spelling and try alternative names or country codes.
+
+---
+
+## Notes
+
+- This is a client-only demo; keys embedded in client code can be visible. For production, proxy requests through a backend to keep secrets safe.
